@@ -7,12 +7,13 @@ module.exports = function(config) {
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
 
-
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
     frameworks: ['mocha', 'chai'],
 
-    // plugins
+    // plugins, karma默认会load是所有karma-XXX的库，
+    // 所以这里其实可以省略，而且一般项目都省略掉的，
+    // 这里保留主要是为了演示
     plugins: [
       'karma-phantomjs-launcher',
       'karma-chai',
