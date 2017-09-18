@@ -9,36 +9,55 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: [],
+    frameworks: ['mocha', 'chai'],
 
-    // plugins
+    // plugins, karma默认会load是所有karma-XXX的库，
+    // 所以这里其实可以省略，而且一般项目都省略掉的，
+    // 这里保留主要是为了演示
     plugins: [
       'karma-phantomjs-launcher',
+      'karma-chai',
+      'karma-mocha',
+      'karma-spec-reporter',
+      'karma-webpack',
       'karma-coverage'
     ],
 
     // list of files / patterns to load in the browser
     files: [
-      'src/index.js',
       'test/index.js'
     ],
-
-    reporters: ['coverage'],
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'src/index.js': ['coverage']
+      'test/index.js': ['webpack']
     },
+
+    webpack: {
+      module: {
+        loaders: [{
+          test: /\.js$/,
+          exclude: [/node_modules/],
+          loader: "babel-loader"
+        }]
+      }
+    },
+
+    webpackMiddleware: {
+      noInfo: true
+    },
+
+    reporters: ['coverage', 'dots'],
 
     coverageReporter: {
       dir: './coverage',
-      // includeAllSources: true,
       reporters: [
         { type: 'lcov', subdir: '.' },
         { type: 'text-summary' }
       ]
     },
+
 
     // web server port
     port: 9876,
