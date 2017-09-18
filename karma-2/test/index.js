@@ -9,7 +9,6 @@ window.__karma__.start = function () {
   window.__karma__.complete()
 }
 
-
 var testCase1 = function() {
   var sum = add(1, 3)
   if (sum === 4) {
