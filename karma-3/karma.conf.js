@@ -18,7 +18,6 @@ module.exports = function(config) {
       'karma-phantomjs-launcher',
       'karma-chai',
       'karma-mocha',
-      'karma-spec-reporter',
       'karma-webpack',
       'karma-coverage'
     ],
@@ -48,7 +47,7 @@ module.exports = function(config) {
       noInfo: true
     },
 
-    reporters: ['coverage', 'dots'],
+    reporters: ['coverage'],
 
     coverageReporter: {
       dir: './coverage',
